@@ -42,7 +42,6 @@ class PlanesController extends BaseController
         ];
         $planes->insert($datos);
         echo "Datos guardados";
-        echo "<a href='planes'> Regresar </a>";
-        
+        return redirect()->route('planes');
     }
 }

@@ -6,16 +6,16 @@ class ClientesController extends BaseController
 {
     public function index(): string
     {
-        //clientes es la vista que muestra los clientes
-        //pendiente de diseñar
-        return view('clientes');
+        $clientes = new ClientesModel();
+        $datos['datos']=$clientes->findAll();
+        return view('clientes',$datos);
     }
     public function nuevoCliente(): string 
     {
         return view('clientes_nuevos');
     }
     
-    public function agregarCliente(): string 
+    public function agregarCliente() 
     {
        $datos=[
             'cliente_id' => $this->request->getVar('txtId'),
@@ -31,6 +31,6 @@ class ClientesController extends BaseController
         $clientes = new ClientesModel();
         $clientes->insert($datos); //insert into cliente values(...);
         echo "Datos guardados";
-        return "";
+        return redirect()->route('clientes');
     }
 }
